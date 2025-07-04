@@ -63,9 +63,14 @@ body {
 }
 
 
-li.active {
+.list-item {
+  cursor: pointer;
+}
+
+.list-item.active {
   font-weight: bold;
 }
+
 
    nav ul {
   list-style: none;
