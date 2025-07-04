@@ -62,7 +62,8 @@ body {
   text-align: left;
 }
 
-li.active {
+
+.clicked {
   font-weight: bold;
 }
 
