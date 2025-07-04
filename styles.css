@@ -35,7 +35,7 @@ header nav ul {
 }
 
 header nav ul li a {
-  color: #190e07; /* White text color */
+  color: #190e07; /* text color */
   text-decoration: none; /* Remove underline */
 }
 
@@ -82,13 +82,13 @@ nav ul {
 nav li {
   align: centre;
   display: inline-block;
-  color: #130a05;
+  color: #190e07;
   margin-left: 45px;
 }
 
 nav li a {
   text-decoration: none;
-  color: #6b3e1e;
+  color: #190e07;
 }
 
  nav ul li a:hover {
