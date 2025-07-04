@@ -62,15 +62,9 @@ body {
   text-align: left;
 }
 
-
-.list-item {
-  cursor: pointer;
-}
-
-.list-item.active {
+li.active {
   font-weight: bold;
 }
-
 
    nav ul {
   list-style: none;
