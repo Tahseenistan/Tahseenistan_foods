@@ -23,7 +23,7 @@ header nav ul {
 
 header nav ul li {
   align: centre;
-  margin-left: 45px;
+   margin-left: 45px;
 }
 
 header nav ul {
@@ -65,21 +65,31 @@ body {
 
 nav ul {
   list-style: none;
+   display: flex;
+  justify-content: flex-end;
   padding: 0;
   margin: 0;
 }
 
+nav ul {
+   justify-content: center;
+}
+
 nav li {
+  align: centre;
   display: inline-block;
-  margin-right: 20px;
+  color: #6b3e1e;
+  margin-left: 45px;
 }
 
-nav a {
+nav li a {
   text-decoration: none;
-  color: #337ab7;
+  color: #6b3e1e;
 }
 
-
+ nav ul li a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
 
 h2 {
   margin: 0 auto;
