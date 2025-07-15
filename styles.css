@@ -145,6 +145,21 @@ position: product-box;
   background-color: #c5a58b;
 }
 
+.order-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ccb29d;
+  color: #000000;
+  padding: 10px 20px;
+  border: 1px;
+  border-radius: 5%;
+  cursor: pointer;  
+}
+
+.order-btn:hover {
+  background-color: #ad8666;
+}
 
 
 
