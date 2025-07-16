@@ -22,7 +22,6 @@
 <script src="./add_to_cart_script.js"></script>
 <script src="./cart_page_script.js"></script>
 <script src="./product_script.js"></script>
-<script src="./order_btn_script.js"></script>
 <div id="cart-container">
   <h2>My Cart</h2>
   <ul id="cart-list"></ul>
@@ -30,7 +29,7 @@
 </div>
 
 <button id="order-btn" class="order-btn"> Place order </button>
-  <script>
+<script>
   document.getElementById('order-btn').addEventListener('click', function() {
     // Get all cart items (assuming each item is an <li> in #cart-list)
     var cartItems = document.querySelectorAll('#cart-list li');
@@ -46,8 +45,7 @@
     // Open WhatsApp chat with pre-filled message
     var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
     window.open(whatsappUrl, "_blank");
-});
+  });
 </script>
-
 </body>
 </html>
