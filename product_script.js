@@ -1,3 +1,7 @@
+// This script adds a product to the cart ONLY ONCE per button tap.
+// It does NOT increment quantity or add duplicates.
+// It does NOT display notifications (add that if you wish).
+
 document.addEventListener('DOMContentLoaded', function() {
   const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
   if (addToCartButtons.length === 0) {
@@ -19,18 +23,17 @@ document.addEventListener('DOMContentLoaded', function() {
           const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
           // Check if product already exists in cart
-          const existingProductIndex = cart.findIndex(product => product.name === productName);
-if (existingProductIndex !== -1) {
-            // Update quantity if product already exists
-            cart[existingProductIndex].quantity += 1;
-          } else {
-            // Add new product to cart
-            cart.push({ name: productName, price: productPrice, image: productImage, quantity: 1 });
-          }
+          const alreadyInCart = cart.some(product => product.name === productName);
 
-          // Save cart to local storage
-          localStorage.setItem('cart', JSON.stringify(cart));
-          console.log('Product added to cart!');
+          if (alreadyInCart) {
+            console.log(productName + ' is already in cart!');
+            return; // Do not add again
+          } else {
+            // Add new product to cart (only one item per tap)
+            cart.push({ name: productName, price: productPrice, image: productImage, quantity: 1 });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            console.log('Product added to cart!');
+          }
         } catch (error) {
           console.error('Error adding product to cart:', error);
         }
@@ -38,4 +41,3 @@ if (existingProductIndex !== -1) {
     });
   }
 });
-
