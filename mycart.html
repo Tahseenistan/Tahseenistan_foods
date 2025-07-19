@@ -31,21 +31,20 @@
 <button id="order-btn" class="order-btn"> Place order </button>
 <script>
   document.getElementById('order-btn').addEventListener('click', function() {
-    // Get all cart items (assuming each item is an <li> in #cart-list)
-    var cartItems = document.querySelectorAll('#cart-list li');
-    var itemNames = [];
-    cartItems.forEach(function(item) {
-        itemNames.push(item.textContent.trim());
-    });
-
-    // Compose WhatsApp message
-    var message = "Order request:\n" + itemNames.join('\n');
-    var phoneNumber = "923204176872"; // Without '+' or leading zero
-
-    // Open WhatsApp chat with pre-filled message
-    var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
-    window.open(whatsappUrl, "_blank");
+  // Get cart from localStorage
+  var cart = JSON.parse(localStorage.getItem('cart')) || [];
+  var itemNames = cart.map(function(product) {
+    return product.name + " x" + product.quantity + " (" + product.price + " RS each)";
   });
+
+  // Compose WhatsApp message
+  var message = "Order request:\n" + itemNames.join('\n');
+  var phoneNumber = "923204176872"; // Without '+' or leading zero
+
+  // Open WhatsApp chat with pre-filled message
+  var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+  window.open(whatsappUrl, "_blank");
+});
 </script>
 </body>
 </html>
