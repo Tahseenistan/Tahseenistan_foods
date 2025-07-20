@@ -1,44 +1,33 @@
-// This script adds a product to the cart and increments quantity if the product is already in the cart.
-
 document.addEventListener('DOMContentLoaded', function() {
   const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-  if (addToCartButtons.length === 0) {
-    console.log('No add to cart buttons found!');
-  } else {
-    console.log('Add to cart buttons found!');
-    addToCartButtons.forEach(button => {
-      button.addEventListener('click', function(event) {
-        console.log('Add to cart button clicked!');
-        event.preventDefault();
-        const productName = button.getAttribute('data-name');
-        const productPrice = parseFloat(button.getAttribute('data-price'));
-        const productImage = button.getAttribute('data-image');
+  addToCartButtons.forEach(button => {
+    // Remove any previous listeners (defensive, not strictly needed unless you attach elsewhere too)
+    button.replaceWith(button.cloneNode(true));
+  });
 
-        console.log(`Product Name: ${productName}, Price: ${productPrice}, Image: ${productImage}`);
+  // Re-select buttons after clone
+  const freshButtons = document.querySelectorAll('.add-to-cart-btn');
+  freshButtons.forEach(button => {
+    button.addEventListener('click', function(event) {
+      event.preventDefault();
+      const productName = button.getAttribute('data-name');
+      const productPrice = parseFloat(button.getAttribute('data-price'));
+      const productImage = button.getAttribute('data-image');
 
-        try {
-          // Get cart from local storage
-          const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      try {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingProductIndex = cart.findIndex(product => product.name === productName);
 
-          // Check if product already exists in cart
-          const existingProductIndex = cart.findIndex(product => product.name === productName);
-
-          if (existingProductIndex !== -1) {
-            // Increment quantity if product already exists
-            cart[existingProductIndex].quantity += 1;
-            console.log(productName + ' quantity increased in cart!');
-          } else {
-            // Add new product to cart
-            cart.push({ name: productName, price: productPrice, image: productImage, quantity: 1 });
-            console.log('Product added to cart!');
-          }
-
-          // Save cart to local storage
-          localStorage.setItem('cart', JSON.stringify(cart));
-        } catch (error) {
-          console.error('Error adding product to cart:', error);
+        if (existingProductIndex !== -1) {
+          cart[existingProductIndex].quantity += 1;
+        } else {
+          cart.push({ name: productName, price: productPrice, image: productImage, quantity: 1 });
         }
-      });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        console.log('Product added to cart!');
+      } catch (error) {
+        console.error('Error adding product to cart:', error);
+      }
     });
-  }
+  });
 });
