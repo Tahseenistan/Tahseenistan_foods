@@ -24,10 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const existingProductIndex = cart.findIndex(product => product.name === productName);
 
-        if (existingProductIndex !== -1) {
-          // Increment quantity if product already exists
-          cart[existingProductIndex].quantity += 1;
-        } else {
+         if {
           // Add new product to cart
           cart.push({ name: productName, price: productPrice, image: productImage, quantity: 1 });
         }
