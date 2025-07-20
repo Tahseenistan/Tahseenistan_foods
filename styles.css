@@ -108,8 +108,8 @@ ol {
 }
 @media only screen and (max-width: 768px) {
   .responsive-image {
-    width: 180px; /* phone size */
-    height: 180px;
+    width: 200px; /* phone size */
+    height: 200px;
   }
 }
 
