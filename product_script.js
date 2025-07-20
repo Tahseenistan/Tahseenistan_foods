@@ -24,10 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const existingProductIndex = cart.findIndex(product => product.name === productName);
 
-         if {
+      
           // Add new product to cart
           cart.push({ name: productName, price: productPrice, image: productImage, quantity: 1 });
-        }
+        
         localStorage.setItem('cart', JSON.stringify(cart));
         showCartNotification(productName + ' added to cart!');
       } catch (error) {
