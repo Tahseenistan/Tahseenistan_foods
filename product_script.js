@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Notification function (no inline style, assume styling handled by CSS)
+  // Notification function (notification div must exist and be styled in CSS)
   function showCartNotification(message) {
     const notification = document.getElementById('cart-notification');
     if (notification) {
@@ -21,15 +21,31 @@ document.addEventListener('DOMContentLoaded', function() {
       const productImage = button.getAttribute('data-image');
 
       try {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const existingProductIndex = cart.findIndex(product => product.name === productName);
+        // Get cart from localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-      
-          // Add new product to cart
-          cart.push({ name: productName, price: productPrice, image: productImage, quantity: 1 });
-        
+        // Try to find the product in cart by name
+        let product = cart.find(item => item.name === productName);
+
+        if (product) {
+          // If found, increase quantity
+          product.quantity += 1;
+        } else {
+          // If not found, add new product with quantity 1
+          cart.push({
+            name: productName,
+            price: productPrice,
+            image: productImage,
+            quantity: 1
+          });
+        }
+
+        // Save cart back to localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
-        showCartNotification(productName + ' added to cart!');
+        showCartNotification(productName + " added to cart!");
+
+        // Trigger any custom event to re-render cart if needed
+        document.dispatchEvent(new CustomEvent('cartUpdated'));
       } catch (error) {
         console.error('Error adding product to cart:', error);
       }
