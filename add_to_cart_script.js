@@ -28,6 +28,11 @@ document.addEventListener('DOMContentLoaded', function() {
         showCartNotification(productName + " is already in cart!");
         return;
       }
+      if (existingProductIndex !== -1) {
+  cart[existingProductIndex].quantity += 1;
+} else {
+  cart.push({ name: productName, price: productPrice, image: productImage, quantity: 1 });
+}
 
       // Add new product to cart (only one item per tap)
       cart.push({ name: productName, price: productPrice, image: productImage, quantity: 1 });
